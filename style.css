@@ -1,16 +1,25 @@
 body {
-	width: 80%;
+	width: 90%;
+	text-align: center;
 }
 
-div {
-    width: 80%;
+.formElement {
+    width: 30%;
     text-align: center;
     display: inline-block;
     margin: 5px;
+    max-width:200px;
 }
 
-select {
-    width: 30%;
-    min-width: 150px;
-    display: inline;
+
+iframe {
+	width: 90%;
+	min-height: 750px;
+
+}
+
+.footer {
+	width: 90%;
+	position: fixed;
+	bottom: 0px;
 }

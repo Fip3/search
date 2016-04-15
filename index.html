@@ -6,26 +6,26 @@
         <meta charset="utf-8">
 
         <script type="text/javascript" src="scripts.js"></script>
-        <script src="jquery-1.12.0.min.js"></script>
+        <script type="text/javascript" src="jquery-1.12.3.min.js"></script>
 
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
 
     <body>
-        <div>
+        <div class="formElement">
             <input value="Buscar..." onclick="javascript:vaciar()" id=""></input>
         </div>
 
         <div>
-            <select id="seccion" onChange="javascript: listaTema(xhttp)">
+            <select id="seccion" onChange="javascript: listaTema(xhttp)" class="formElement">
             <option>Sección</option>
             </select>
 
-            <select id="tema" onChange="javascript: listaSubtema(xhttp)">
+            <select id="tema" onChange="javascript: listaSubtema(xhttp)" class="formElement">
                 <option>Tema</option>
             </select>
 
-            <select id="subtema">
+            <select id="subtema" class="formElement">
                 <option>Subtema</option>
             </select>
         </div>
@@ -43,9 +43,10 @@
             </div>
         </div>
 
-        <script type="text/javascript">
-            $('buscar').click( function() {window.location.pathname = "http://www.cooperativa.cl"; })
-        </script>
+        
+        <div class="footer">
+            <iframe src="http://www.cooperativa.cl"></iframe>
+        </div>
     </body>
 
 </html>
