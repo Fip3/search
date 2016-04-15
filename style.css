@@ -5,6 +5,8 @@ body {
 div {
     width: 80%;
     text-align: center;
+    display: inline-block;
+    margin: 5px;
 }
 
 select {

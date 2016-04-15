@@ -49,3 +49,12 @@ function listaSubtema(xml){
     }
     document.getElementById("subtema").innerHTML = txt2;
 }
+
+
+var linkBuscar="";
+function crearLink(b,sc,tm,st){
+
+
+
+}
+
