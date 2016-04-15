@@ -5,21 +5,23 @@
         <title>Búsqueda Avanzada - Cooperativa</title>
         <meta charset="utf-8">
         <script type="text/javascript" src="scripts.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css">
     </head>
 
     <body>
-
-        <select id="seccion" onChange="javascript: listaTema(xhttp)">
+        <div id="temas">
+            <select id="seccion" onChange="javascript: listaTema(xhttp)">
             <option>Sección</option>
-        </select>
+            </select>
 
-        <select id="tema" onChange="javascript: listaSubtema(xhttp)">
-            <option>Tema</option>
-        </select>
+            <select id="tema" onChange="javascript: listaSubtema(xhttp)">
+                <option>Tema</option>
+            </select>
 
-        <select id="subtema">
-            <option>Subtema</option>
-        </select>
-
+            <select id="subtema">
+                <option>Subtema</option>
+            </select>
+        </div>
     </body>
+
 </html>
