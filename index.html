@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html>
 
+    <head>
+        <title>Búsqueda Avanzada - Cooperativa</title>
+        <meta charset="utf-8">
+    </head>
+
     <body>
 
     <select id="seccion" onChange="javascript: listaTema(xhttp)">
+        <option>Sección</option>
     </select>
 
-    <select id="tema" onChange="javascript: listaSubtema()">
+    <select id="tema" onChange="javascript: listaSubtema(xhttp)">
+        <option>Tema</option>
     </select>
 
     <select id="subtema">
+        <option>Subtema</option>
     </select>
 
 
@@ -32,7 +40,7 @@
             cadena = x[i].children[0].innerHTML;
             txt0 += "<option value=\"" + x[i].id + "\">" + cadena + "</option>";
         }
-        document.getElementById("seccion").innerHTML = txt0;
+        document.getElementById("seccion").innerHTML += txt0;
     }
 
 
@@ -48,12 +56,23 @@
                 txt1 += "<option value=\"" + x[i].id + "\">" + cadena + "</option>";
              };    
         }
-
-        document.getElementById("tema").innerHTML = txt1;
-
+        document.getElementById("tema").innerHTML += txt1;
     }
 
-
+    function listaSubtema(xml){
+        var x, i, xmlDoc, txt2;
+        var identificador = document.getElementById('tema').value;
+        xmlDoc = xml.responseXML;
+        txt2 = "";
+        x = xmlDoc.getElementsByTagName('subtema');
+        for (i = 0 ; i <x.length; i++) {
+             if (x[i].parentNode.id == identificador) {
+                cadena = x[i].children[0].innerHTML;
+                txt2 += "<option value=\"" + x[i].id + "\">" + cadena + "</option>";
+             };    
+        }
+        document.getElementById("subtema").innerHTML += txt2;
+    }    
 
     </script>
 
