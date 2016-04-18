@@ -1,5 +1,5 @@
 body {
-	width: 90%;
+	width: 95%;
 	text-align: center;
 }
 
@@ -13,13 +13,25 @@ body {
 
 
 iframe {
-	width: 90%;
-	min-height: 750px;
+	width: 100%;
+	height: 600px;
+	border: 0px;
+	-moz-transform: scale(0.75, 0.75); 
+    -webkit-transform: scale(0.75, 0.75); 
+    -o-transform: scale(0.75, 0.75);
+    -ms-transform: scale(0.75, 0.75);
+    transform: scale(1, 1); 
+    -moz-transform-origin: center center;
+    -webkit-transform-origin: center center;
+    -o-transform-origin: center center;
+    -ms-transform-origin: center center;
+    transform-origin: center center;
+	;
 
 }
 
 .footer {
-	width: 90%;
+	width: 95%;
 	position: fixed;
 	bottom: 0px;
 }

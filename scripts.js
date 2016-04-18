@@ -7,6 +7,10 @@ xhttp.onreadystatechange = function() {
 xhttp.open("GET", "prontus_tax_export.xml", true);
 xhttp.send();
 
+var txt0 = "<option>Sección</option>";
+var txt1 = "<option>Tema</option>";
+var txt2 = "<option>Subtema</option>";
+
 function listaSeccion(xml) {
     var x, i, xmlDoc, txt0;
     xmlDoc = xml.responseXML;
@@ -50,11 +54,52 @@ function listaSubtema(xml){
     document.getElementById("subtema").innerHTML = txt2;
 }
 
+function limpiar(){
+    document.getElementById("buscar").value="Buscar...";
+    listaSeccion(xhttp);
+    listaTema(xhttp);
+    listaSubtema(xhttp);
+    document.getElementById("resultados").src="about:blank";
+    pag = 1;
+    
+}
 
-var linkBuscar="";
-function crearLink(b,sc,tm,st){
+var sec,tem,stma,termino;
+
+sec = "Deportes";
+tem = "Rally";
+stma = "Dakar";
+texto = "moto";
+pag = 1;
 
 
+function botonBusqueda(){
+
+    document.getElementById("resultados").src="http://www.cooperativa.cl/cgi-bin/prontus_search.cgi?search_prontus=noticias" + "&search_idx=noticias" + "&search_tmp=search.html" + "&search_form=yes" + "&search_pag=" + pag + "&search_resxpag=20" + "&search_maxpags=1000" + "&search_orden=cro" + "&search_meta1=" + "&search_meta2=" + "&search_meta3=" + "&search_seccion=" + sec + "&search_tema=" + tem + "&search_subtema=" + stma + "&search_fechaini=" + "&search_fechafin=" + "&search_texto=" + texto + "&search_modo=and" + "&search_comodines=no" + "&vista="
+    document.getElementById("adelante").disabled=false;
 
 }
 
+function carga(){
+
+    document.getElementById("atras").disabled=true;
+    document.getElementById("adelante").disabled=true;
+}
+
+function botonAtras(){
+
+    if (pag > 1) {
+        pag--
+        botonBusqueda()
+    }
+    if (pag == 1) {
+        document.getElementById("atras").disabled=true;
+    }
+}
+
+function botonAdelante(){
+
+    pag++
+    botonBusqueda()
+    document.getElementById("atras").disabled=false;
+}
