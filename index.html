@@ -12,8 +12,10 @@
     </head>
 
     <body>
-        <div class="formElement">
-            <input value="Buscar..." onclick="this.value='';" id="buscar"></input>
+        <div class="saerchBox">
+            <input value="Buscar..." onclick="this.value='';" id="buscar" style="width:200px"></input>
+            <label>Página</label>
+            <input value="1" style="width: 30px; text-align:right;" "margin-right:5px"></ibput>
         </div>
 
         <div>
@@ -39,8 +41,8 @@
             </div>
         </div>
 
-        <div class="footer">
-            <iframe src="about:blank" id="resultados"></iframe>
+        <div class="results">
+            <iframe src="about:blank" id="resultados" height="90%"></iframe>
         </div>
 
         <script type="text/javascript">
