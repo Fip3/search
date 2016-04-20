@@ -11,6 +11,13 @@ var txt0 = "<option>Sección</option>";
 var txt1 = "<option>Tema</option>";
 var txt2 = "<option>Subtema</option>";
 
+var sec,tem,stma,texto;
+sec = "";
+tem = "";
+stma = "";
+texto = "";
+var pag = 1;
+
 function listaSeccion(xml) {
     var x, i, xmlDoc, txt0;
     xmlDoc = xml.responseXML;
@@ -18,11 +25,11 @@ function listaSeccion(xml) {
     x = xmlDoc.getElementsByTagName('seccion');
     for (i = 0 ; i <x.length; i++) {
         cadena = x[i].children[0].innerHTML;
-        txt0 += "<option value=\"" + x[i].id + "\">" + cadena + "</option>";
+        txt0 += "<option value=\"" + x[i].id + "\" label=\"" + cadena + "\">" + cadena + "</option>";
     }
     document.getElementById("seccion").innerHTML = txt0;
-}
 
+}
 
 function listaTema(xml){
     var x, i, xmlDoc, txt1;
@@ -33,7 +40,7 @@ function listaTema(xml){
     for (i = 0 ; i <x.length; i++) {
          if (x[i].parentNode.id == identificador) {
             cadena = x[i].children[0].innerHTML;
-            txt1 += "<option value=\"" + x[i].id + "\">" + cadena + "</option>";
+            txt1 += "<option value=\"" + x[i].id + "\" label=\"" + cadena + "\">" + cadena + "</option>";
          };    
     }
     document.getElementById("tema").innerHTML = txt1;
@@ -48,10 +55,12 @@ function listaSubtema(xml){
     for (i = 0 ; i <x.length; i++) {
          if (x[i].parentNode.id == identificador) {
             cadena = x[i].children[0].innerHTML;
-            txt2 += "<option value=\"" + x[i].id + "\">" + cadena + "</option>";
+            txt2 += "<option value=\"" + x[i].id + "\" label=\"" + cadena + "\">" + cadena + "</option>";
          };    
     }
     document.getElementById("subtema").innerHTML = txt2;
+
+    
 }
 
 function limpiar(){
@@ -60,22 +69,45 @@ function limpiar(){
     listaTema(xhttp);
     listaSubtema(xhttp);
     document.getElementById("resultados").src="about:blank";
+    document.getElementById("adelante").disabled=true;
+    sec = "";
+    tem = "";
+    stma = "";
+    texto = "";
     pag = 1;
     
 }
 
-var sec,tem,stma,termino;
+function getLabel(field){
+    var x = document.getElementById(field);
+    var t ="";
 
-sec = "Deportes";
-tem = "Rally";
-stma = "Dakar";
-texto = "moto";
-pag = 1;
+    for (i = 1; i < x.length; i++) {
+        if (x.childNodes[i].value == x.value) {
+            t = x.childNodes[i].label;
+        };
+    };
+
+    return t;
+}
 
 
-function botonBusqueda(){
 
-    document.getElementById("resultados").src="http://www.cooperativa.cl/cgi-bin/prontus_search.cgi?search_prontus=noticias" + "&search_idx=noticias" + "&search_tmp=search.html" + "&search_form=yes" + "&search_pag=" + pag + "&search_resxpag=20" + "&search_maxpags=1000" + "&search_orden=cro" + "&search_meta1=" + "&search_meta2=" + "&search_meta3=" + "&search_seccion=" + sec + "&search_tema=" + tem + "&search_subtema=" + stma + "&search_fechaini=" + "&search_fechafin=" + "&search_texto=" + texto + "&search_modo=and" + "&search_comodines=no" + "&vista="
+function busqueda(){
+
+    if (document.getElementById("buscar").value == "Buscar..."){
+        texto="";
+    } else {
+
+        texto = document.getElementById("buscar").value
+    };
+
+    sec = getLabel("seccion");
+    tem = getLabel("tema");
+    stma = getLabel("subtema");
+
+    document.getElementById("resultados").src="http://www.cooperativa.cl/cgi-bin/prontus_search.cgi?search_prontus=noticias" + "&search_idx=noticias" + "&search_tmp=search.html" + "&search_form=yes" + "&search_pag=" + pag + "&search_resxpag=20" + "&search_maxpags=1000" + "&search_orden=cro" + "&search_meta1=" + "&search_meta2=" + "&search_meta3=" + "&search_seccion=" + sec + "&search_tema=" + tem + "&search_subtema=" + stma + "&search_fechaini=" + "&search_fechafin=" + "&search_texto=" + texto + "&search_modo=and" + "&search_comodines=no" + "&vista=";
+
     document.getElementById("adelante").disabled=false;
 
 }
@@ -89,8 +121,8 @@ function carga(){
 function botonAtras(){
 
     if (pag > 1) {
-        pag--
-        botonBusqueda()
+        pag--;
+        busqueda();
     }
     if (pag == 1) {
         document.getElementById("atras").disabled=true;
@@ -99,7 +131,7 @@ function botonAtras(){
 
 function botonAdelante(){
 
-    pag++
-    botonBusqueda()
+    pag++;
+    busqueda();
     document.getElementById("atras").disabled=false;
 }
