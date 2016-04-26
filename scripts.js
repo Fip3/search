@@ -11,12 +11,11 @@ var txt0 = "<option>Sección</option>";
 var txt1 = "<option>Tema</option>";
 var txt2 = "<option>Subtema</option>";
 
-var sec,tem,stma,texto;
+var sec,tem,stma,texto,pag;
 sec = "";
 tem = "";
 stma = "";
 texto = "";
-var pag = 1;
 
 function listaSeccion(xml) {
     var x, i, xmlDoc, txt0;
@@ -28,7 +27,6 @@ function listaSeccion(xml) {
         txt0 += "<option value=\"" + x[i].id + "\" label=\"" + cadena + "\">" + cadena + "</option>";
     }
     document.getElementById("seccion").innerHTML = txt0;
-
 }
 
 function listaTema(xml){
@@ -59,8 +57,6 @@ function listaSubtema(xml){
          };    
     }
     document.getElementById("subtema").innerHTML = txt2;
-
-    
 }
 
 function limpiar(){
@@ -70,12 +66,16 @@ function limpiar(){
     listaSubtema(xhttp);
     document.getElementById("resultados").src="about:blank";
     document.getElementById("adelante").disabled=true;
+    texto = "";
+    pag = 1;
+    limpiarListas();
+    
+}
+
+function limpiarListas(){
     sec = "";
     tem = "";
     stma = "";
-    texto = "";
-    pag = 1;
-    
 }
 
 function getLabel(field){
@@ -91,7 +91,11 @@ function getLabel(field){
     return t;
 }
 
-
+function busquedaBoton(){
+    pag = 1;
+    document.getElementById("pagina").value = pag;
+    busqueda();
+}
 
 function busqueda(){
 
@@ -106,7 +110,7 @@ function busqueda(){
     tem = getLabel("tema");
     stma = getLabel("subtema");
 
-    document.getElementById("resultados").src="http://www.cooperativa.cl/cgi-bin/prontus_search.cgi?search_prontus=noticias" + "&search_idx=noticias" + "&search_tmp=search.html" + "&search_form=yes" + "&search_pag=" + pag + "&search_resxpag=20" + "&search_maxpags=1000" + "&search_orden=cro" + "&search_meta1=" + "&search_meta2=" + "&search_meta3=" + "&search_seccion=" + sec + "&search_tema=" + tem + "&search_subtema=" + stma + "&search_fechaini=" + "&search_fechafin=" + "&search_texto=" + texto + "&search_modo=and" + "&search_comodines=no" + "&vista=";
+    document.getElementById("resultados").src="http://www.cooperativa.cl/cgi-bin/prontus_search.cgi?search_prontus=noticias" + "&search_idx=noticias" + "&search_tmp=search.html" + "&search_form=yes" + "&search_pag=" + pag + "&search_resxpag=50" + "&search_maxpags=1000" + "&search_orden=cro" + "&search_meta1=" + "&search_meta2=" + "&search_meta3=" + "&search_seccion=" + sec + "&search_tema=" + tem + "&search_subtema=" + stma + "&search_fechaini=" + "&search_fechafin=" + "&search_texto=" + texto + "&search_modo=and" + "&search_comodines=no" + "&vista=";
 
     document.getElementById("adelante").disabled=false;
 
@@ -134,4 +138,9 @@ function botonAdelante(){
     pag++;
     busqueda();
     document.getElementById("atras").disabled=false;
+}
+
+function irPagina(){
+    pag = document.getElementById("pagina").value;
+    busqueda();
 }
