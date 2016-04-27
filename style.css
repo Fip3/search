@@ -43,8 +43,6 @@ iframe {
     height: 90%;
 	position: fixed;
 	bottom: 0px;
-    -webkit-overflow-scrolling:touch;
-    overflow-y: scroll;
     
 }
 
