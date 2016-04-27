@@ -103,7 +103,7 @@ function busqueda(){
         texto="";
     } else {
 
-        texto = document.getElementById("buscar").value
+        texto = document.getElementById("buscar").value;
     };
 
     sec = getLabel("seccion");
@@ -131,6 +131,8 @@ function botonAtras(){
     if (pag == 1) {
         document.getElementById("atras").disabled=true;
     }
+    document.getElementById("pagina").value=pag;
+        
 }
 
 function botonAdelante(){
@@ -138,6 +140,7 @@ function botonAdelante(){
     pag++;
     busqueda();
     document.getElementById("atras").disabled=false;
+    document.getElementById("pagina").value=pag;
 }
 
 function irPagina(){
