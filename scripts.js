@@ -64,7 +64,7 @@ function limpiar(){
     
 }
 
-var sec,tem,stma,termino;
+var sec,tem,stma,texto,pag;
 
 sec = "Deportes";
 tem = "Rally";
