@@ -1,54 +1,49 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Búsqueda Avanzada - Cooperativa</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="scripts.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
 
-    <head>
-        <title>Búsqueda Avanzada - Cooperativa</title>
-        <meta charset="utf-8">
+  <body>
+    <div class="searchBox">
+      <input value="Buscar..." onclick="this.value='';" onkeyup="if(event.keyCode == 13) busqueda()" id="buscar" style="width:200px"></input>
+        <label>Página</label>
+        <input value="1" style="width: 100px; text-align:right;" "margin-right:5px" id="pagina" onkeyup="if(event.keyCode == 13) irPagina()"></input>
+        <button id="ir" onclick="javascript: irPagina()" >Ir</button>
+    </div>
 
-        <script type="text/javascript" src="scripts.js"></script>
-        <script type="text/javascript" src="jquery-1.12.3.min.js"></script>
+    <div>
+      <select id="seccion" onChange="javascript: listaTema(xhttp)" class="formElement">
+        <option>Sección</option>
+      </select>
+      <select id="tema" onChange="javascript: listaSubtema(xhttp)" class="formElement">
+        <option>Tema</option>
+      </select>
 
-        <link rel="stylesheet" type="text/css" href="style.css">
-    </head>
+      <select id="subtema" class="formElement">
+        <option>Subtema</option>
+      </select>
+    </div>
 
-    <body>
-        <div class="searchBox">
-            <input value="Buscar..." onclick="this.value='';" onkeyup="if(event.keyCode == 13) busqueda()" id="buscar" style="width:200px"></input>
-            <label>Página</label>
-            <input value="1" style="width: 100px; text-align:right;" "margin-right:5px" id="pagina" onkeyup="if(event.keyCode == 13) irPagina()"></input>
-            <button id="ir" onclick="javascript: irPagina()" >Ir</button>
-        </div>
+    <div>
+      <div>
+        <button id="atras" onclick="botonAtras()"><<</button>
+        <button id="buscar" onclick="javascript:busquedaBoton()">Buscar</button>
+        <button id="limpiar" onclick="javascript:limpiar()">Limpiar</button>
+        <button id="adelante" onclick="javascript:botonAdelante()">>></button>
+      </div>
+    </div>
 
-        <div>
-            <select id="seccion" onChange="javascript: listaTema(xhttp)" class="formElement">
-            <option>Sección</option>
-            </select>
+    <div class="results">
+      <iframe src="about:blank" id="resultados" style="height:90%; width:90%;" ></iframe>
+    </div>
 
-            <select id="tema" onChange="javascript: listaSubtema(xhttp)" class="formElement">
-                <option>Tema</option>
-            </select>
-
-            <select id="subtema" class="formElement">
-                <option>Subtema</option>
-            </select>
-        </div>
-
-        <div>
-            <div>
-                <button id="atras" onclick="botonAtras()"><<</button>
-                <button id="buscar" onclick="javascript:busquedaBoton()">Buscar</button>
-                <button id="limpiar" onclick="javascript:limpiar()">Limpiar</button>
-                <button id="adelante" onclick="javascript:botonAdelante()">>></button>
-            </div>
-        </div>
-
-        <div class="results">
-            <iframe src="about:blank" id="resultados" style="height:90%; width:90%;" ></iframe>
-        </div>
-
-        <script type="text/javascript">
-            carga();
-        </script>
-    </body>
+    <script type="text/javascript">
+      carga();
+    </script>
+  </body>
 
 </html>
